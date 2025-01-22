@@ -1,4 +1,4 @@
-#!/Users/grigorii/PycharmProjects/GPT-CodeApp/backend/env/bin/python3.12
+#!/Users/grigorii/PycharmProjects/Chat-GPT-with-Fast-API/backend/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
