@@ -1,101 +1,113 @@
-## ChatGPT-FastAPI 
+![](images/code_knot_awesome.png)
+# GPT-CodeKnot 🚀
 
-[中文](./README_CN.md)
+![GitHub stars](https://img.shields.io/github/stars/blazickjp/GPT-CodeApp?style=social) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/blazickjp/GPT-CodeApp) ![GitHub All Releases](https://img.shields.io/github/downloads/blazickjp/GPT-CodeApp/total) [![Run Pytest](https://github.com/blazickjp/GPT-CodeApp/actions/workflows/pytest_ubuntu.yml/badge.svg)](https://github.com/blazickjp/GPT-CodeApp/actions/workflows/pytest_ubuntu.yml) ![GitHub contributors](https://img.shields.io/github/contributors/blazickjp/GPT-CodeApp) ![GitHub](https://img.shields.io/github/license/blazickjp/GPT-CodeApp)
 
-If you are a Python person, and looking for a simple web interface to try out OpenAI ChatGPT API, then this is the repo for you. 
-
-This is a Python one-stop shop project that I built myself to try out different context/prompt engineering. I hope you will find it useful.
-
-![image](./doc/sample1_en.png)
-
-## System Requirement
-
-Tested on `MacOS` and `Ubuntu20 LTS`
-
-Python version `== python3.8`
-
-<i>Technically, it should work on `>= python3.7`, but you will have to edit the module versions accordingly in `install.sh` file</i>
-
-## Installation
-1. At project root, create and enter a `python3.8` virtual environment
-```
-cd $PROJECT_ROOT
-python3.8 -m venv venv
-source venv/bin/activate
-```
-
-2. One bash script installation for all
-```
-bash ./install.sh
-```
-
-## Start Server
-
-Visit openai to obtain your [API key](https://platform.openai.com/account/api-keys) and [Organization ID](https://platform.openai.com/account/org-settings)
-
-Then export to env variable
-```
-export OPENAI_API_KEY="sk-abcdef..."
-export OPENAI_ORG_ID="org-zxcvbb..."
-```
-
-Start the server using bash script
-```
-bash ./app.sh start --host 0.0.0.0 --port 8080
-```
-
-You should see the below sample stdout
-```
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
-chatgpt launched
---------------------------
-```
-
-Note that this server is detached from your terminal, you're free to close the terminal without interrupting the service.
-
-To stop the server, execute `bash ./app.sh stop`
-
-Now, open web browser and visit http://0.0.0.0:8080. Enjoy
+Embark on a coding adventure with GPT-CodeApp, your new AI-powered coding companion! 🎉 This isn't just another Chat-GPT clone; it's your gateway to a smoother coding experience, packed with features you've always wished for.
 
 
-## Switch Language
+![](images/Snip20240321_1.png)
 
-<br>Step 1: create your own `config_lang.py`, similar to the following files
-```
-./config
-├── config_en.py
-└── config_zh.py
-```
+## 📚 Table of Contents
 
-<br>Step 2: change the import in `main.py:32` accordingly
-```
-from config.config_en import Args
-# from config.config_zh import Args
-```
+- [Installation and Setup](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [License](#license)
+- [Questions](#questions)
+- [Features](#features)
 
-<br>Step 3: create your own prompts, arranging the files in the following way
-```
-./prompts
-├── prompts_en
-│   ├── chat-agent.txt
-│   └── context-summarizer.txt
-└── prompts_zh
-    ├── chat-agent.txt
-    └── context-summarizer.txt
-```
+## 🛠️ Installation and Setup
 
-<br>Step 4: edit the `config_lang.py` created in step 1, make sure its `PROMPTS_DIR` is assigned with the intended directory. Also edit all the message related variables (line 30:50). Replace them with your desired texts.
+Setting up GPT-CodeApp is as easy as 1, 2, 3! Our application consists of a frontend and a backend, both of which need to be set up separately. 
 
+Jump straight into action with these simple setup steps for both the frontend and backend. Let's get the engines running!
 
-## Common Issues
-to be added
+### Backend: The Brain 🧠
 
-## Credits
-1. This project was built upon <br> https://medium.com/@ahtishamshafi9906/how-to-build-a-simple-chat-application-in-fastapi-7bafad755654
-2. Spinning donut <br> https://www.a1k0n.net/2011/07/20/donut-math.html
+1. **Enter the Backend Lair:**
+    ```bash
+    cd backend
+    ```
+2. **Summon the Python Dependencies:**
+    ```bash
+    python3 -m venv env
+    source env/bin/activate
+    pip install -r requirements.txt
+    ```
+3. **Awaken the Backend Beast:**
+    ```bash
+    uvicorn main:app --reload
+    ```
 
-## License
+### Frontend: The Face 😎
 
-This project is licensed under the [MIT License](LICENSE).
+1. **Dive into the Frontend Fortress:**
+    ```bash
+    cd frontend
+    ```
+2. **Gather the JavaScript Warriors:**
+    ```bash
+    npm install
+    ```
+3. **Launch the Visual Vanguard:**
+    ```bash
+    npm run dev
+    ```
+
+## 🗝️ Model Authentication
+
+Before you can use the GPT-CodeApp, you'll need to authenticate with the AI models from Bedrock and OpenAI. Here's how to do it:
+
+### Bedrock Authentication
+
+Bedrock uses standard AWS authentication for boto3 and access to the ClaudEv2 models. Follow these steps to set it up:
+
+1. Install the AWS CLI on your machine. You can do this by following the instructions in the [official AWS CLI User Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
+
+2. Configure your AWS credentials by running the following command and providing your AWS Access Key ID and Secret Access Key when prompted:
+
+    ```bash
+    aws configure
+    ```
+
+3. Set the `AWS_PROFILE` environment variable to the name of the AWS profile you want to use:
+
+    ```bash
+    export AWS_PROFILE=your-profile-name
+    ```
+
+### OpenAI Authentication
+
+OpenAI uses environment variables for authentication. Follow these steps to set it up:
+
+1. Get your OpenAI API key. You can find this in the [OpenAI Dashboard](https://beta.openai.com/dashboard/).
+
+2. Set the `OPENAI_API_KEY` environment variable to your OpenAI API key:
+
+    ```bash
+    export OPENAI_API_KEY=your-api-key
+    ```
+
+Now you're ready to start using the GPT-CodeApp with Anthropic and OpenAI models!
+
+## 🎮 Usage
+Dive into the GPT-CodeApp experience with these simple steps:
+
+- **Step 1:** Launch your browser and head over to `http://localhost:3000` to greet your new AI coding companion.
+
+- **Step 3:** Ensure you've setup authentication with either OpenAI (API KEY) or Bedrock (for Anthropic models). With authentication out of the way, you're ready to roll! Look for the sidebar on the main interface. Here, you'll find a spot to input the **full path** to the directory of your project. This is crucial for GPT-CodeApp to understand the context of your work and provide tailored assistance.
+- **Step 4:** Now, it's time to ask away! Load *focus* files into the search bar at the top. Make sure to send them to the backend with the send button. Type your coding queries or dilemmas into the text box and hit submit. GPT-CodeApp will churn through its AI brain to bring you crisp, accurate coding advice or solutions.
+- **Step 5:** Explore the responses, refine your questions for deeper insights, or kick off a new query. The AI is here to assist you through thick and thin code.
+- **Step 6:** Base prompts can be found in the backend/agent/agent_prompts.py file and set to load in the app_setup.py. You can also add your own prompts to the file anytime. 
+- **Notes:** The input text box accepts images and text. To add an image to the prompt simply copy the image and paste it into the text box.
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+See [Contributing Guide](CONTRIBUTING.md)
+
+## 🧪 Tests
+

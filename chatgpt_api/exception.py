@@ -1,3 +1,0 @@
-
-class LongInputException(Exception):
-    pass
